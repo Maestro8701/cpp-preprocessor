@@ -38,7 +38,15 @@ bool Preprocess(const path& in_file, const path& out_file, const vector<path>& i
     smatch match_system_include;
 
     ifstream input(in_file, ios::in);
+    if (!input.is_open()) {
+    cerr << "Ошибка: не удалось открыть входной файл " << in_file << endl;
+    return false;
+}
     ofstream output(out_file, ios::out | ios::app);
+    if (!output.is_open()) {
+    cerr << "Ошибка: не удалось открыть выходной файл " << out_file << endl;
+    return false;
+}
     int line_num=0;
     string line;
 
